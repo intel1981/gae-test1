@@ -14,6 +14,17 @@
 
 <div class="row justify-content-center">
     <div class="col-md-8 my-3 p-3 rounded bg-white shadow-sm border">
+        @if(session('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h6 class="alert-heading">
+                    <i class="fas fa-check"></i></i>
+                    {{ session('status') }}
+                </h6>
+            </div>
+        @endif
         <div class="form row">
             <div class="form-group col-md-6">
                 <label for="cct">C.C.T.</label>
@@ -41,13 +52,17 @@
             </div>
         </div>
         <div class="form row">
-            <div class="form-group col-md-12">
-                @if($escuela->status)
-                    <span class="text-success"> <strong>Disponible para su uso</strong>  </span>
-                @else
-                    <span class="text-danger"> <strong>No Disponible para su uso</strong> </span>
-                @endif
+            <div class="form-group col-md-3">
+                <label for="status">¿ Escuela disponible ? </label>
+                <input type="text" class="form-control" value="{{ $escuela->status ? 'Si' : 'No'  }}" disabled>
             </div>
+        </div>
+
+        <div class="float-right">
+            <a class="btn text-white" style="background-color: #0D47A1" href="{{ route('escuelas.edit', ['id' => $escuela->id]) }}" id="btn_edit" name="btn_edit" role="button">
+                <i class="fas fa-pencil-alt"></i>
+                Editar
+            </a>
         </div>
     </div>
 </div>

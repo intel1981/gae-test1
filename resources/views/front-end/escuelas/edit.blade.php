@@ -57,7 +57,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="nivel">Nivel <span class="text-danger">*</span></label>
-                        <select id="nivel" name="nivel" class="form-control" required>
+                        <select id="nivel" name="nivel" class="form-control{{ $errors->has('nivel') ? ' is-invalid' : '' }}" required>
                             <option value=""></option>
                             <option value="Inicial" {{ $escuela->nivel == "Inicial" ? "selected" : "" }}>Inicial</option>
                             <option value="Preescolar" {{ $escuela->nivel == "Preescolar" ? "selected" : "" }}>Preescolar</option>
@@ -69,10 +69,15 @@
                             <option value="CAM" {{ $escuela->nivel == "CAM" ? "selected" : "" }}>CAM</option>
                             <option value="Otro Nivel Educativo" {{ $escuela->nivel == "Otro Nivel Educativo" ? "selected" : "" }}>Otro Nivel Educativo</option>
                         </select>
+                        @if ($errors->has('nivel'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('nivel') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="form-group col-md-4">
                         <label for="turno">Turno <span class="text-danger">*</span></label>
-                        <select id="turno" name="turno" class="form-control" required>
+                        <select id="turno" name="turno" class="form-control{{ $errors->has('turno') ? ' is-invalid' : '' }}" required>
                             <option value=""></option>
                             <option value="No Aplica" {{ $escuela->turno == "No Aplica" ? "selected" : "" }}>No Aplica</option>
                             <option value="Matutino" {{ $escuela->turno == "Matutino" ? "selected" : "" }}>Matutino</option>
@@ -81,34 +86,39 @@
                             <option value="Discontinuo" {{ $escuela->turno == "Discontinuo" ? "selected" : "" }} >Discontinuo</option>
                             <option value="Continuo" {{ $escuela->turno == "Continuo" ? "selected" : "" }}>Continuo</option>
                         </select>
+                        @if ($errors->has('turno'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('turno') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="form-group col-md-4" >
                         <label for="sostenimiento">Sostenimiento <span class="text-danger">*</span></label>
-                        <select id="sostenimiento" name="sostenimiento" class="form-control" required>
+                        <select id="sostenimiento" name="sostenimiento" class="form-control{{ $errors->has('sostenimiento') ? ' is-invalid' : '' }}" required>
                             <option value=""></option>
                             <option value="Público" {{ $escuela->sostenimiento == "Público" ? "selected" : "" }}>Público</option>
                             <option value="Privado" {{ $escuela->sostenimiento == "Privado" ? "selected" : "" }}>Privado</option>
                         </select>
+                        @if ($errors->has('sostenimiento'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('sostenimiento') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        @if( old('status') == null)
-                            <input class="form-check-input" type="checkbox" id="status" name="status" {{ $escuela->status ? 'checked' : ''  }}>
-                            <label class="form-check-label" for="status">
-                                Escuela disponible para su uso
-                            </label>
-                        @else
-                            <input class="form-check-input" type="checkbox" id="status" name="status" checked>
-                            <label class="form-check-label" for="status">
-                                Escuela disponible para su uso
-                            </label>
-                        @endif
+                <div class="form row">
+                    <div class="form-group col-md-3">
+                        <label for="status">¿ Escuela disponible ? </label>
+                        <select id="status" name="status" class="form-control" required>
+                            <option value=""></option>
+                            <option value="1" {{ $escuela->status == true ? "selected" : "" }}>Si</option>
+                            <option value="0" {{ $escuela->status == false ? "selected" : "" }}>No</option>
+                        </select>
                     </div>
                 </div>
                 <hr>
                 <div class="float-left">
-                    <a class="btn btn-danger" href="{{ url()->previous() }}" id="btn_cancelar" name="btn_cancelar" role="button">
+                    <a class="btn btn-danger" href="{{ route('escuelas.index') }}" id="btn_cancelar" name="btn_cancelar" role="button">
                         <i class="fas fa-times-circle"></i>
                         Cancelar
                     </a>

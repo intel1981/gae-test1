@@ -54,19 +54,19 @@ class Escuela extends Model
     }
 
     /**
-     * Pone en minusculas el nombre de la escuela.
+     * Pone en mayusculas el nombre de la escuela.
      *
      * @param  string  $value
      * @return void
      */
     public function setNombreAttribute($value)
     {
-        $this->attributes['nombre'] = mb_strtolower($value);
+        $this->attributes['nombre'] = mb_strtoupper($value);
     }
-
     /**
      * Mutator
      * Establece el status de la escuela. 1=true, 0= false
+     * Sucede cuando el valor no existe o no se envia por el Request
      *
      * @param  string  $value
      * @return void
@@ -74,7 +74,7 @@ class Escuela extends Model
     public function setStatusAttribute($value)
     {
         if(isset($value)){
-            $this->attributes['status'] = true;
+            $this->attributes['status'] = $value;
         }
         else{
             $this->attributes['status'] = false;

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EscuelaRequest extends FormRequest
 {
@@ -43,7 +44,12 @@ class EscuelaRequest extends FormRequest
             case 'PATCH':
                 {
                     return [
-                        'cct'           => 'required|unique:escuelas,id|min:10|max:10'.$this->escuela->id,
+                        'cct' => [
+                            'required',
+                            Rule::unique('escuelas')->ignore($this->escuela->id),
+                            'min:10',
+                            'max:10'
+                        ],
                         'nombre'        => 'required|max:60',
                         'nivel'         => 'required',
                         'turno'         => 'required',

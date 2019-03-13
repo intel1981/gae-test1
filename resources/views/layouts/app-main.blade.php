@@ -43,6 +43,8 @@
 <script src="{{ asset('js/popper-1.14.7.js') }}" ></script>
 <!-- Bootstrap.js -->
 <script src="{{ asset('js/bootstrap-4.3.1.js') }}" ></script>
+
+@yield('module_javascript')
 </body>
 </html>
 

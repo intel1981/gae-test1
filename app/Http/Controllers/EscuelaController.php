@@ -32,13 +32,15 @@ class EscuelaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\EscuelaRequest
      * @return \Illuminate\Http\Response
      */
     public function store(EscuelaRequest $request)
     {
         $escuela = tap(new Escuela($request->all()))->save();
-        return dd($escuela);
+        return redirect()
+            ->route('escuelas.show', ['id' => $escuela->id])
+            ->with('status','La escuela se ha creado correctamente');
     }
 
     /**
@@ -66,14 +68,16 @@ class EscuelaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\EscuelaRequest
      * @param  \App\Models\Escuela  $escuela
      * @return \Illuminate\Http\Response
      */
     public function update(EscuelaRequest $request, Escuela $escuela)
     {
         $escuela->update($request->all());
-        return dd($request->all(), $escuela);
+        return redirect()
+            ->route('escuelas.show', ['id' => $escuela->id])
+            ->with('status','La escuela se ha actualizado correctamente');
     }
 
     /**
@@ -84,6 +88,6 @@ class EscuelaController extends Controller
      */
     public function destroy(Escuela $escuela)
     {
-        //
+        return dd($escuela);
     }
 }
