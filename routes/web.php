@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('escuelas', 'EscuelaController');
+Route::resource('ciclos', 'CicloController');

@@ -15,7 +15,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="{{ route('escuelas.index') }}">Escuelas</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Ciclos Escolares</a>
+                    <a class="dropdown-item" href="{{ route('ciclos.index') }}">Ciclos Escolares</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Niveles de Grupo</a>
                     <div class="dropdown-divider"></div>
