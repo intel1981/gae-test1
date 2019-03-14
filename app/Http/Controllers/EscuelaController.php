@@ -88,6 +88,9 @@ class EscuelaController extends Controller
      */
     public function destroy(Escuela $escuela)
     {
-        return dd($escuela);
+        $escuela->delete();
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

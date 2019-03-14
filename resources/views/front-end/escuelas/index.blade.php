@@ -47,7 +47,7 @@
                             <a href="{{ route('escuelas.edit', ['id' => $escuela->id]) }}" class="btn bg-transparent btn-sm" role="button" title="Editar" aria-pressed="true">
                                 <i class="fas fa-pencil-alt text-primary"></i>
                             </a>
-                            <button type="button" class="btn bg-transparent btn-sm" onclick="deleteItem({{ $escuela->id }})">
+                            <button type="button" class="btn bg-transparent btn-sm" onclick="deleteItem('{{ route('escuelas.destroy', $escuela->id) }}')">
                                 <i class="far fa-trash-alt text-danger"></i>
                             </button>
                         </td>
@@ -61,14 +61,7 @@
 @endsection
 
 @section('module_javascript')
-<!-- Archivo javascript del modulo -->
-{{--<script src="{{ asset('js/modules/escuela/escuela.js') }}" ></script>--}}
-<script>
-    function deleteItem(id) {
-        console.log(id);
-        $.ajax({
-
-        });
-    }
-</script>
+<!-- Archivo(s) javascript del modulo -->
+<script src="{{ asset('js/axios.js') }}" ></script>
+<script src="{{ asset('js/modules/escuela.js') }}"></script>
 @endsection
