@@ -13,4 +13,8 @@ class Ciclo extends Model
     protected $fillable = ['inicio', 'fin', 'status'];
     protected $dates    = ['deleted_at', 'created_at', 'updated_at'];
     protected $casts    = ['status' => 'boolean'];
+
+    public function getPeriodoAttribute(){
+        return "{$this->inicio} - {$this->fin}";
+    }
 }

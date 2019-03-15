@@ -16,7 +16,7 @@ class CicloController extends Controller
     public function index()
     {
         $ciclos = Ciclo::orderBy('created_at', 'asc')->get();
-        return view('front-end.ciclos.index');
+        return view('front-end.ciclos.index', compact('ciclos'));
     }
 
     /**
@@ -46,7 +46,7 @@ class CicloController extends Controller
         $ciclo = tap(new Ciclo($request->all()))->save();
         return redirect()
             ->route('ciclos.show', ['id' => $ciclo->id])
-            ->with('status','El ciclo escolar se ha creado correctamente');
+            ->with('status','El periodo del ciclo escolar se ha creado correctamente');
     }
 
     /**
@@ -76,11 +76,15 @@ class CicloController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Ciclo  $ciclo
+     * @param  \App\Http\Requests\CicloRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ciclo $ciclo)
+    public function update(CicloRequest $request, Ciclo $ciclo)
     {
-        //
+        $ciclo->update($request->all());
+        return redirect()
+            ->route('ciclos.show', ['id' => $ciclo->id])
+            ->with('status', 'El periodo del ciclo escolar se ha actualizado correctamente');
     }
 
     /**
@@ -91,6 +95,9 @@ class CicloController extends Controller
      */
     public function destroy(Ciclo $ciclo)
     {
-        //
+        $ciclo->delete();
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

@@ -25,11 +25,36 @@ class CicloRequest extends FormRequest
      */
     public function rules()
     {
-
-        return [
-            'inicio' => 'required|integer|digits:4|lt:fin',
-            'fin'    => 'required|integer|digits:4|gt:inicio'
-        ];
+        switch ($this->method()){
+            case 'GET':
+            case 'DELETE':
+            case 'POST':{
+                return [
+                    'inicio' => 'required|integer|digits:4|lt:fin|unique:ciclos',
+                    'fin'    => 'required|integer|digits:4|gt:inicio|unique:ciclos'
+                ];
+            }
+            case 'PATCH': {
+                return [
+                    'inicio' => [
+                        'required',
+                        'integer',
+                        'digits:4',
+                        'lt:fin',
+                        Rule::unique('ciclos')->ignore($this->ciclo->id)
+                    ],
+                    'fin' => [
+                        'required',
+                        'integer',
+                        'digits:4',
+                        'gt:inicio',
+                        Rule::unique('ciclos')->ignore($this->ciclo->id)
+                    ],
+                ];
+            }
+            case 'PUT':
+            default: break;
+        }
     }
 
     /**
@@ -42,6 +67,8 @@ class CicloRequest extends FormRequest
         return [
             'inicio.required' => 'Obligatorio',
             'fin.required'    => 'Obligatorio',
+            'inicio.unique'   => 'Ya existe',
+            'fin.unique'      => 'Ya existe',
             'inicio.integer'  => 'Debe ser num. entero',
             'fin.integer'     => 'Debe ser num. entero',
             'inicio.digits'  => 'Deben ser 4 digitos',

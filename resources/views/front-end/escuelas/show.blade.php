@@ -53,7 +53,7 @@
         </div>
         <div class="form row">
             <div class="form-group col-md-3">
-                <label for="status">¿ Escuela disponible ? </label>
+                <label for="status">Escuela disponible </label>
                 <input type="text" class="form-control" value="{{ $escuela->status ? 'Si' : 'No'  }}" disabled>
             </div>
         </div>

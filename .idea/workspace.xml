@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="328b528b-3721-4c4b-8bd4-e52455d4ffca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/modules/ciclo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CicloController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CicloController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/CicloRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CicloRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Ciclo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Ciclo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_14_140250_create_ciclos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_03_14_140250_create_ciclos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front-end/ciclos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/ciclos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front-end/ciclos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/ciclos/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front-end/ciclos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/ciclos/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front-end/ciclos/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/ciclos/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front-end/escuelas/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/escuelas/show.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -63,12 +66,15 @@
         <option value="$PROJECT_DIR$/resources/views/front-end/escuelas/index.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/navigation-bar.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/front-end/ciclos/index.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_14_140250_create_ciclos_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/CicloRequest.php" />
-        <option value="$PROJECT_DIR$/app/Models/Ciclo.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CicloController.php" />
         <option value="$PROJECT_DIR$/resources/views/front-end/ciclos/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Models/Ciclo.php" />
+        <option value="$PROJECT_DIR$/resources/views/front-end/ciclos/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/front-end/ciclos/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CicloController.php" />
+        <option value="$PROJECT_DIR$/public/js/modules/ciclo.js" />
+        <option value="$PROJECT_DIR$/resources/views/front-end/ciclos/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/CicloRequest.php" />
       </list>
     </option>
   </component>
@@ -155,8 +161,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
+    <option name="x" value="1283" />
     <option name="width" value="1260" />
     <option name="height" value="944" />
   </component>
@@ -165,7 +170,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,41 +180,26 @@
             <path>
               <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
               <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
               <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
               <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="front-end" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="front-end" type="462c0819:PsiDirectoryNode" />
-              <item name="ciclos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="front-end" type="462c0819:PsiDirectoryNode" />
-              <item name="escuelas" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Requests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,14 +305,18 @@
       <workItem from="1552623716969" duration="1787000" />
       <workItem from="1552625533539" duration="1785000" />
       <workItem from="1552627408216" duration="1284000" />
+      <workItem from="1552675265886" duration="1513000" />
+      <workItem from="1552677512760" duration="1250000" />
+      <workItem from="1552685134701" duration="1774000" />
+      <workItem from="1552687012769" duration="1175000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92840000" />
+    <option name="totallyTimeSpent" value="98552000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="1272" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2985437" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -391,11 +384,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-780" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_ide_helper.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -621,12 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/navigation-bar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -641,27 +623,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front-end/escuelas/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="619">
           <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_14_140250_create_ciclos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding>
-            <element signature="e#7#45#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,47 +637,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/escuelas/show.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/front-end/escuelas/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="26" column="14" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="26" selection-end-column="14" />
+        <state relative-caret-position="433">
+          <caret line="77" column="79" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/EscuelaRequest.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_03_14_140250_create_ciclos_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="567">
+          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
           <folding>
-            <element signature="e#37#80#0#PHP" expanded="true" />
+            <element signature="e#7#45#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/front-end/escuelas/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="19" column="59" lean-forward="true" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EscuelaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="42" column="69" lean-forward="true" selection-start-line="40" selection-start-column="8" selection-end-line="42" selection-end-column="69" />
+        <state relative-caret-position="70">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="e#40#77#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/CicloRequest.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
-          <folding>
-            <element signature="e#37#58#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="336">
+          <caret line="63" column="34" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Ciclo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        <state relative-caret-position="459">
+          <caret line="17" column="48" lean-forward="true" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
           <folding>
             <element signature="e#30#69#0#PHP" expanded="true" />
           </folding>
@@ -721,25 +697,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CicloController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="48" column="75" lean-forward="true" selection-start-line="48" selection-start-column="75" selection-end-line="48" selection-end-column="75" />
+        <state relative-caret-position="596">
+          <caret line="99" column="29" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
           <folding>
             <element signature="e#40#75#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/escuelas/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="77" column="79" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="79" />
+        <state relative-caret-position="378">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/js/modules/ciclo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1961">
-          <caret line="97" column="13" selection-start-line="97" selection-start-column="13" selection-end-line="97" selection-end-column="13" />
+        <state relative-caret-position="216">
+          <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/front-end/ciclos/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="44" column="138" selection-start-line="44" selection-start-column="138" selection-end-line="44" selection-end-column="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/EscuelaRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#37#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/CicloRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="33" column="82" selection-start-line="33" selection-start-column="82" selection-end-line="33" selection-end-column="82" />
+          <folding>
+            <element signature="e#37#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
