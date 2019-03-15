@@ -12,7 +12,7 @@
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-md-6 my-3 p-3 rounded bg-white shadow-sm border">
+    <div class="col-md-8 my-3 p-3 rounded bg-white shadow-sm border">
         <div class="border-bottom border-gray pb-2 mb-2">
             <span class="font-weight-bold">
                 Complete los siguientes datos
@@ -28,20 +28,40 @@
                 <h6 class="alert-heading">Verifique los errores del formulario</h6>
             </div>
         @endif
+        @if(session('status'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h6 class="alert-heading">
+                    El ciclo escolar que trata de crear, ya existe. Verifique los años del periodo.
+                </h6>
+            </div>
+        @endif
 
         <form method="POST" action="{{ route('ciclos.store') }}" id="form_create" name="form_create">
             @csrf
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="">Periodo del ciclo escolar </label>
+                    <label for="">Periodo del ciclo escolar <span class="text-danger">*</span> </label>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="20XX" id="inicio" name="inicio" required>
+                            <input type="text" class="form-control{{ $errors->has('inicio')||session('status') ? ' is-invalid' : '' }}" value="{{ old('inicio') }}" placeholder="20XX" id="inicio" name="inicio" required>
+                            @if ($errors->has('inicio'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('inicio') }}
+                                </div>
+                            @endif
                         </div>
                         -
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="20XX" id="fin" name="fin" required>
+                            <input type="text" class="form-control{{ $errors->has('fin')||session('status') ? ' is-invalid' : '' }}" value="{{ old('fin') }}" placeholder="20XX" id="fin" name="fin" required>
+                            @if ($errors->has('fin'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('fin') }}
+                                </div>
+                            @endif
                         </div>
 
                     </div>
@@ -67,7 +87,7 @@
                 </a>
             </div>
             <div class="float-right">
-                <button type="button" class="btn text-white" style="background-color: #0D47A1" id="btn_guardar" name="btn_guardar">
+                <button type="submit" class="btn text-white" style="background-color: #0D47A1" id="btn_guardar" name="btn_guardar">
                     <i class="fas fa-check"></i>
                     Guardar
                 </button>
@@ -76,15 +96,3 @@
     </div>
 </div>
 @endsection()
-@section('module_javascript')
-<script>
-    $( document ).ready(function() {
-        $( "#btn_guardar" ).on( "click", function() {
-            console.log( "Boton guardar was clicked" );
-            $( "#form_create" ).submit(function ( event ) {
-                event.preventDefault();
-            });
-        });
-    });
-</script>
-@endsection

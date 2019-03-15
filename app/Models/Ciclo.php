@@ -10,7 +10,7 @@ class Ciclo extends Model
     use SoftDeletes;
 
     protected $table    = 'ciclos';
-    protected $fillable = ['periodo', 'status'];
+    protected $fillable = ['inicio', 'fin', 'status'];
     protected $dates    = ['deleted_at', 'created_at', 'updated_at'];
     protected $casts    = ['status' => 'boolean'];
 }

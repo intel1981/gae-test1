@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CicloRequest;
 use App\Models\Ciclo;
 use Illuminate\Http\Request;
 
@@ -32,11 +33,20 @@ class CicloController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\CicloRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CicloRequest $request)
     {
-        return dd($request->all());
+        $count = Ciclo::where('inicio', $request->get('inicio'))
+                 ->where('fin', $request->get('fin'))->count();
+        if($count){
+            return back()->withInput()->with('status', 'El ciclo escolar ya existe.');
+        }
+        $ciclo = tap(new Ciclo($request->all()))->save();
+        return redirect()
+            ->route('ciclos.show', ['id' => $ciclo->id])
+            ->with('status','El ciclo escolar se ha creado correctamente');
     }
 
     /**
