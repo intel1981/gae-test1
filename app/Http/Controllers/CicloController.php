@@ -15,8 +15,12 @@ class CicloController extends Controller
      */
     public function index()
     {
-        $ciclos = Ciclo::orderBy('created_at', 'asc')->get();
-        return view('front-end.ciclos.index', compact('ciclos'));
+        return response()
+            ->json([
+               'ciclos' => Ciclo::orderBy('created_at', 'asc')->get()
+            ]);
+        //$ciclos = Ciclo::orderBy('created_at', 'asc')->get();
+        //return view('front-end.ciclos.index', compact('ciclos'));
     }
 
     /**

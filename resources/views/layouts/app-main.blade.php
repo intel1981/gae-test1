@@ -12,7 +12,9 @@
     <!-- Font Awesome CSS 5.7.2 -->
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/all.css') }}">
     <!-- Sweetalert2 -->
-		<link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
 
     <title>Gestion y Administración de Escuelas :: G.A.E</title>
 
@@ -45,6 +47,9 @@
 <script src="{{ asset('js/popper-1.14.7.js') }}" ></script>
 <!-- Bootstrap.js -->
 <script src="{{ asset('js/bootstrap-4.3.1.js') }}" ></script>
+<!-- DataTables -->
+<script src="{{ asset('js/jquery.dataTables.min.js') }}" ></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}" ></script>
 <!-- Sweetalert2.js -->
 <script src="{{ asset('js/sweetalert-v8.3.0.js') }}"></script>
 

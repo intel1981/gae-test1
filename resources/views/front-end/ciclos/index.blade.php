@@ -14,7 +14,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8 my-3 p-3 rounded bg-white shadow-sm border">
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table id="ciclos" class="table table-striped" style="width:100%">
                 <thead>
                 <tr>
                     <th scope="col" class="text-center">#</th>
@@ -59,4 +59,9 @@
 <!-- Archivo(s) javascript del modulo -->
 <script src="{{ asset('js/axios.js') }}" ></script>
 <script src="{{ asset('js/modules/ciclo.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#ciclos').DataTable();
+    } );
+</script>
 @endsection
