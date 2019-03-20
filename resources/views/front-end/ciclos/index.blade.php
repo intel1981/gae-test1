@@ -14,10 +14,10 @@
 <div class="row justify-content-center">
     <div class="col-md-8 my-3 p-3 rounded bg-white shadow-sm border">
         <div class="table-responsive">
-            <table id="ciclos" class="table table-striped" style="width:100%">
+            <table id="ciclos" class="table table-striped border-bottom" style="width:100%">
                 <thead>
                 <tr>
-                    <th scope="col" class="text-center">#</th>
+                    <th scope="row" class="text-center"></th>
                     <th scope="col" class="text-center">Periodo escolar</th>
                     <th scope="col" class="text-center">Estado</th>
                     <th scope="col" class="text-center">Acciones</th>
@@ -26,8 +26,12 @@
                 <tbody>
                 @foreach($ciclos as $ciclo)
                     <tr>
-                        <th scope="row" class="text-center">{{ $loop->iteration }}</th>
-                        <td class="text-center">{{ $ciclo->periodo }}</td>
+                        <td class="text-center"></td>
+                        @if($ciclo->status)
+                            <td class="text-center">{{ $ciclo->periodo }}</td>
+                        @else
+                            <td class="text-center text-danger"><del>{{ $ciclo->periodo }}</del></td>
+                        @endif
                         <td class="text-center">
                             @if($ciclo->status)
                                 <i class="fas fa-check text-success"></i>
@@ -61,7 +65,31 @@
 <script src="{{ asset('js/modules/ciclo.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#ciclos').DataTable();
+        /*
+         DataTables - Options
+         https://datatables.net/reference/option/order
+         Options: DataTables - Columns
+         https://datatables.net/reference/option/columnDefs
+         */
+        var dt_ciclos = $('#ciclos').DataTable({
+            order: [[ 1, 'desc' ]],
+            columnDefs: [
+                { targets: 0, searchable: false, orderable: false},
+                { targets: [2,3], searchable: false, orderable:false }
+            ],
+            language: {
+                url: "{{ asset('dataTables/lang/Spanish.json') }}"
+            }
+        });
+        /*
+        Index column
+        https://datatables.net/examples/api/counter_columns.html
+         */
+        dt_ciclos.on( 'order.dt search.dt', function () {
+            dt_ciclos.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
     } );
 </script>
 @endsection

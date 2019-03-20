@@ -30,6 +30,10 @@
         .navbar-dark .navbar-nav .nav-link {
             color: #ffffff;
         }
+        .dataTables_info { font-size: 12px; font-weight: bold;}
+        .dataTables_length { font-size: 12px;  }
+        .dataTables_filter { font-size: 12px; }
+        .pagination { font-size: 13px; }
     </style>
 
 </head>

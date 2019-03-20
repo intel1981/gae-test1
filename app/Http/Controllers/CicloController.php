@@ -15,12 +15,8 @@ class CicloController extends Controller
      */
     public function index()
     {
-        return response()
-            ->json([
-               'ciclos' => Ciclo::orderBy('created_at', 'asc')->get()
-            ]);
-        //$ciclos = Ciclo::orderBy('created_at', 'asc')->get();
-        //return view('front-end.ciclos.index', compact('ciclos'));
+        $ciclos = Ciclo::all();
+        return view('front-end.ciclos.index', compact('ciclos'));
     }
 
     /**
@@ -42,11 +38,6 @@ class CicloController extends Controller
      */
     public function store(CicloRequest $request)
     {
-        $count = Ciclo::where('inicio', $request->get('inicio'))
-                 ->where('fin', $request->get('fin'))->count();
-        if($count){
-            return back()->withInput()->with('status', 'El ciclo escolar ya existe.');
-        }
         $ciclo = tap(new Ciclo($request->all()))->save();
         return redirect()
             ->route('ciclos.show', ['id' => $ciclo->id])
