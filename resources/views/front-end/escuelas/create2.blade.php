@@ -22,13 +22,13 @@
                 <div class="form-group col-md-6">
                     <label for="cct">C.C.T. <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="cct" name="cct" placeholder="C.C.T." required>
-                    <div class="invalid-feedback">Falta la clave.</div>
+                    <div class="invalid-feedback" id="invalid_cct"></div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
-                <div class="invalid-feedback">Falta el nombre.</div>
+                <div class="invalid-feedback" id="invalid_nombre"></div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
@@ -36,17 +36,19 @@
                     <select id="tipo_id" name="tipo_id" class="form-control" required>
                         <option selected value=""></option>
                     </select>
-                    <div class="invalid-feedback">Falta el tipo.</div>
+                    <div class="invalid-feedback" id="invalid_tipo_id"></div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="nivel_id">Nivel de la escuela <span class="text-danger">*</span></label>
                     <select id="nivel_id" name="nivel_id" class="form-control" required disabled>
                     </select>
+                    <div class="invalid-feedback" id="invalid_nivel_id"></div>
                 </div>
                 <div class="form-group col-md-4" >
                     <label for="servicio_id">Tipo de Servicio <span class="text-danger">*</span></label>
                     <select id="servicio_id" name="servicio_id" class="form-control" required disabled>
                     </select>
+                    <div class="invalid-feedback" id="invalid_servicio_id"></div>
                 </div>
             </div>
             <hr>
@@ -68,29 +70,51 @@
 @endsection
 @section('module_javascript')
 <script>
-(function() {
-    'use strict';
-    window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        console.log(forms);
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    console.log(form);
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
+
 
 $(document).ready(function() {
     //https://laravel.com/api/5.8/Illuminate/Http/Request.html#method_root
     var urlRoot = "{{Request::root()}}";
+
+    $( "#form_create" ).submit(function( event ) {
+        var inputs = document.getElementById("form_create").elements;
+        var count = 0;
+        var required = Array.prototype.filter.call(inputs, function(input){
+            if(input.required && input.type === "text" && input.disabled === false){
+                if($.trim(input.value).length === 0){
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    $("#invalid_"+input.id).html("Requerido");
+                    count++;
+                }
+                else{
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                }
+            }
+            if(input.required && input.type === "select-one" && input.disabled === false ){
+                if(input.value === ""){
+                    input.classList.add('is-invalid');
+                    $("#invalid_"+input.id).html("Requerido");
+                    count++;
+                }
+                else{
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                }
+            }
+        });
+        if(count!=0){
+            event.preventDefault();
+            event.stopPropagation();
+
+        }else{
+
+        }
+        //console.log(inputs);
+
+
+    });
 
     $.getJSON("{{ route('tiposDeEscuela') }}", null, function (values) {
         $.each(values.tipos, function(key, value) {

@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="328b528b-3721-4c4b-8bd4-e52455d4ffca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/front-end/escuelas/create2.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EscuelaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EscuelaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NivelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NivelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServicioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServicioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TipoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TipoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/front-end/escuelas/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/escuelas/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front-end/escuelas/create2.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front-end/escuelas/create2.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +184,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1272" />
     <option name="y" value="-8" />
     <option name="width" value="1296" />
     <option name="height" value="1000" />
@@ -200,7 +194,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -211,25 +204,34 @@
             <path>
               <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
               <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
               <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
               <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gae-test1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gae-test1" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="escuelas" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -373,14 +375,19 @@
       <workItem from="1553777048974" duration="1770000" />
       <workItem from="1553778854656" duration="1774000" />
       <workItem from="1553780664745" duration="738000" />
+      <workItem from="1553799432629" duration="378000" />
+      <workItem from="1553800111406" duration="1769000" />
+      <workItem from="1553802003551" duration="1230000" />
+      <workItem from="1553809508659" duration="1771000" />
+      <workItem from="1553811323553" duration="1563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142501000" />
+    <option name="totallyTimeSpent" value="149212000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="1272" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3106796" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -807,8 +814,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front-end/escuelas/create2.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2087">
-          <caret line="116" column="59" lean-forward="true" selection-start-line="116" selection-start-column="59" selection-end-line="116" selection-end-column="59" />
+        <state relative-caret-position="270">
+          <caret line="85" column="54" lean-forward="true" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
         </state>
       </provider>
     </entry>
