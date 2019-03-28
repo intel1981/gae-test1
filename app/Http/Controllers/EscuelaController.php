@@ -26,7 +26,7 @@ class EscuelaController extends Controller
      */
     public function create()
     {
-        return view('front-end.escuelas.create');
+        return view('front-end.escuelas.create2');
     }
 
     /**

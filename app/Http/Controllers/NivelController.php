@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Admin\Tipo;
 
 class NivelController extends Controller
@@ -15,8 +14,13 @@ class NivelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function niveltipo($tipo_id){
-        return response()->json([
-            'niveles' => Tipo::find($tipo_id)->niveles()->with('tipo')->get()
-        ]);
+
+        $niveles = Tipo::find($tipo_id)->niveles()
+                   ->select(['id as value','nombre as text'])->get()->toArray();
+
+        array_unshift($niveles, ['value' => '', 'text' => '']);
+
+        return $niveles;
+
     }
 }

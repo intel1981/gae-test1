@@ -18,7 +18,10 @@ Route::get('/', function () {
 Route::resource('escuelas', 'EscuelaController');
 Route::resource('ciclos', 'CicloController');
 /*
- * Rutas para obtener los niveles y servicios para los select dependientes
+ * Rutas para obtener los tipos de escuela
+ * Niveles de acuerdo al tipo de escuela elegido
+ * Servicios de acuerdo al tipo y nivel elegidos
  */
+Route::get('tipos', 'TipoController@tipos')->name('tiposDeEscuela');
 Route::get('niveltipo/{tipo_id}','NivelController@niveltipo');
 Route::get('servnivel/{nivel_id}', 'ServicioController@servnivel');

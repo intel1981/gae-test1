@@ -17,8 +17,11 @@ class ServicioController extends Controller
      */
     public function servnivel($nivel_id)
     {
-        return response()->json([
-           'servicios' => Nivel::find($nivel_id)->servicios()->with('nivel','tipo')->get()
-        ]);
+        $servicios = Nivel::find($nivel_id)->servicios()
+                     ->select(['id as value', 'nombre as text'])->get()->toArray();
+
+        array_unshift($servicios, ['value' => '', 'text' => '']);
+
+        return $servicios;
     }
 }
