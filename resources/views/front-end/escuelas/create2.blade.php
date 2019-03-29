@@ -15,6 +15,13 @@
 <div class="row justify-content-center">
     <div class="col-md-8 my-3 p-3 rounded bg-white shadow-sm border">
 
+        <div class="border-bottom border-gray pb-2 mb-2">
+            <span class="font-weight-bold">
+                Complete los siguientes datos
+            </span>
+            <small class="text-danger"> (* campo obligatorio)</small>
+        </div>
+
         <form method="POST" action="" id="form_create" name="form_create" class="needs-validation" novalidate>
             @csrf
 
@@ -22,13 +29,11 @@
                 <div class="form-group col-md-6">
                     <label for="cct">C.C.T. <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="cct" name="cct" placeholder="C.C.T." required>
-                    <div class="invalid-feedback" id="invalid_cct"></div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
-                <div class="invalid-feedback" id="invalid_nombre"></div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
@@ -36,19 +41,16 @@
                     <select id="tipo_id" name="tipo_id" class="form-control" required>
                         <option selected value=""></option>
                     </select>
-                    <div class="invalid-feedback" id="invalid_tipo_id"></div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="nivel_id">Nivel de la escuela <span class="text-danger">*</span></label>
                     <select id="nivel_id" name="nivel_id" class="form-control" required disabled>
                     </select>
-                    <div class="invalid-feedback" id="invalid_nivel_id"></div>
                 </div>
                 <div class="form-group col-md-4" >
                     <label for="servicio_id">Tipo de Servicio <span class="text-danger">*</span></label>
                     <select id="servicio_id" name="servicio_id" class="form-control" required disabled>
                     </select>
-                    <div class="invalid-feedback" id="invalid_servicio_id"></div>
                 </div>
             </div>
             <hr>
@@ -69,51 +71,75 @@
 </div>
 @endsection
 @section('module_javascript')
+<!-- Archivo(s) javascript del modulo -->
+<script src="{{ asset('js/jquery.validate.js') }}" ></script>
+<script src="{{ asset('js/additional-methods.js') }}"></script>
 <script>
 
+$.validator.setDefaults( {
+    submitHandler: function () {
+        alert( "submitted!" );
+    }
+} );
 
 $(document).ready(function() {
     //https://laravel.com/api/5.8/Illuminate/Http/Request.html#method_root
     var urlRoot = "{{Request::root()}}";
 
-    $( "#form_create" ).submit(function( event ) {
-        var inputs = document.getElementById("form_create").elements;
-        var count = 0;
-        var required = Array.prototype.filter.call(inputs, function(input){
-            if(input.required && input.type === "text" && input.disabled === false){
-                if($.trim(input.value).length === 0){
-                    input.classList.remove('is-valid');
-                    input.classList.add('is-invalid');
-                    $("#invalid_"+input.id).html("Requerido");
-                    count++;
-                }
-                else{
-                    input.classList.remove('is-invalid');
-                    input.classList.add('is-valid');
-                }
+    $("#form_create").validate({
+        debug: true,
+        errorClass: "is-invalid",
+        validClass: "is-valid",
+        errorElement: "em",
+        rules: {
+            cct:     "required",
+            nombre:  "required",
+            tipo_id: "required",
+            nivel_id: "required",
+            servicio_id: "required"
+        },
+        messages: {
+            cct: "Falta la clave",
+            nombre: "Falta el nombre",
+            tipo_id: "Falta el tipo",
+            nivel_id: "Falta el nivel",
+            servicio_id: "Falta el tipo de servicio"
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors === 1
+                    ? 'Verifica el campo marcado en rojo'
+                    : 'Verifica los ' + errors + ' campos marcados en rojo';
+                Swal.fire({
+                    type: 'error',
+                    title: 'Formulario incorrecto',
+                    text: message,
+                    allowOutsideClick: false,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Corregir'
+                });
+            } else {
+                // el fomulario se ha validado correctamente, informar que se procedera a guardaer el formulario
             }
-            if(input.required && input.type === "select-one" && input.disabled === false ){
-                if(input.value === ""){
-                    input.classList.add('is-invalid');
-                    $("#invalid_"+input.id).html("Requerido");
-                    count++;
-                }
-                else{
-                    input.classList.remove('is-invalid');
-                    input.classList.add('is-valid');
-                }
+        },
+        errorPlacement: function ( error, element ) {
+            error.addClass( "invalid-feedback" );
+            if ( element.prop( "type" ) === "checkbox" ) {
+                error.insertAfter( element.parent( "label" ) );
+            } else {
+                error.insertAfter( element );
             }
-        });
-        if(count!=0){
-            event.preventDefault();
-            event.stopPropagation();
-
-        }else{
-
+        },
+        highlight: function ( element, errorClass, validClass ) {
+            $( element ).addClass( errorClass ).removeClass( validClass );
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $( element ).addClass( validClass ).removeClass( errorClass );
         }
-        //console.log(inputs);
-
-
     });
 
     $.getJSON("{{ route('tiposDeEscuela') }}", null, function (values) {
