@@ -33,9 +33,11 @@ class EscuelaRequest extends FormRequest
             case 'POST':
                 {
                     return [
+                        'tipo_id'       => 'required',
+                        'nivel_id'      => 'required',
+                        'servicio_id'   => 'required',
+                        'nombre'        => 'required|max:120',
                         'cct'           => 'required|unique:escuelas|min:10|max:10',
-                        'nombre'        => 'required|max:60',
-                        'nivel'         => 'required',
                         'turno'         => 'required',
                         'sostenimiento' => 'required'
                     ];
@@ -80,11 +82,13 @@ class EscuelaRequest extends FormRequest
     public function messages()
     {
         return [
+            'tipo_id'                => 'Elija el tipo',
+            'nivel_id.required'      => 'Elija el nivel',
+            'servicio_id.required'   => 'Elija el servicio',
             'cct.required'           => 'Falta la clave',
             'nombre.required'        => 'Falta el nombre',
-            'nivel.required'         => 'Elija el nivel',
             'turno.required'         => 'Elija el turno',
-            'sostenimiento.required' => 'Tipo de sostenimiento',
+            'sostenimiento.required' => 'Elija público o privado',
 
             'cct.unique' => 'Esta clave ya existe',
             'cct.min'    => 'Min. 10 caracteres',

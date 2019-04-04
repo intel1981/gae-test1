@@ -22,6 +22,6 @@ Route::resource('ciclos', 'CicloController');
  * Niveles de acuerdo al tipo de escuela elegido
  * Servicios de acuerdo al tipo y nivel elegidos
  */
-Route::get('tipos', 'TipoController@tipos')->name('tiposDeEscuela');
+Route::get('tipos', 'TipoController@tipos')->name('tiposEscuela');
 Route::get('niveltipo/{tipo_id}','NivelController@niveltipo');
 Route::get('servnivel/{nivel_id}', 'ServicioController@servnivel');

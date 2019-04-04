@@ -13,9 +13,15 @@ class TipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function tipos(){
+        $tipos = Tipo::select('id as value', 'nombre as text')
+                 ->orderBy('id','asc')
+                 ->get()
+                 ->toArray();
+        array_unshift($tipos,['value' =>'', 'text' => '']);
+        return $tipos;
 
-        return response()->json([
-            'tipos' => Tipo::orderBy('id','asc')->get()
-        ]);
+//        return response()->json([
+//            'tipos' => Tipo::orderBy('id','asc')->get()
+//        ]);
     }
 }

@@ -30,6 +30,10 @@
                     <label for="cct">C.C.T. <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="cct" name="cct" placeholder="C.C.T." required>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="cct">Núm. de Incorporación</label>
+                    <input type="text" class="form-control" id="incorporacion" name="incorporacion" placeholder="Núm. de Incorporación">
+                </div>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre <span class="text-danger">*</span></label>
@@ -37,9 +41,8 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="tipo_id">Tipo de Escuela <span class="text-danger">*</span></label>
+                    <label for="tipo_id">Tipo de escuela <span class="text-danger">*</span></label>
                     <select id="tipo_id" name="tipo_id" class="form-control" required>
-                        <option selected value=""></option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
@@ -48,12 +51,80 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4" >
-                    <label for="servicio_id">Tipo de Servicio <span class="text-danger">*</span></label>
+                    <label for="servicio_id">Tipo de servicio <span class="text-danger">*</span></label>
                     <select id="servicio_id" name="servicio_id" class="form-control" required disabled>
                     </select>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="turno">Turno <span class="text-danger">*</span></label>
+                    <select id="turno" name="turno" class="form-control" required>
+                        <option selected value=""></option>
+                        <option value="No Aplica">No Aplica</option>
+                        <option value="Matutino">Matutino</option>
+                        <option value="Vespertino">Vespertino</option>
+                        <option value="Nocturno">Nocturno</option>
+                        <option value="Discontinuo">Discontinuo</option>
+                        <option value="Continuo">Continuo</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="sostenimiento">Sostenimiento <span class="text-danger">*</span></label>
+                    <select id="sostenimiento" name="sostenimiento" class="form-control" required>
+                        <option selected value=""></option>
+                        <option value="Público">Público</option>
+                        <option value="Privado">Privado</option>
+                    </select>
+                </div>
+            </div>
+            <hr class="mt-0 mb-0">
+            <h4 class="text-center mb-1">Domicilio</h4>
+            <hr class="mt-0">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="calle">Calle</label>
+                    <input type="text" class="form-control" id="calle" name="calle" placeholder="Calle">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="colonia">Colonia</label>
+                    <input type="text" class="form-control" id="colonia" name="colonia" placeholder="Colonia">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="exterior">Número exterior</label>
+                    <input type="text" class="form-control" id="exterior" name="exterior" placeholder="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="interior">Número interior</label>
+                    <input type="text" class="form-control" id="interior" name="interior" placeholder="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="codpost">Código postal</label>
+                    <input type="text" class="form-control" id="codpost" name="codpost" placeholder="">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="referencia">Entre calles <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="referencia" name="referencia" placeholder="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="entidad">Entidad</label>
+                    <input type="text" class="form-control" id="entidad" name="entidad" placeholder="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="municipio">Municipio</label>
+                    <input type="text" class="form-control" id="municipio" name="municipio" placeholder="">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="localidad">Localidad <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="localidad" name="localidad" placeholder="">
+                </div>
+            </div>
             <hr>
+
             <div class="float-left">
                 <a class="btn btn-danger" href="{{ route('escuelas.index') }}" id="btn_cancelar" name="btn_cancelar" role="button">
                     <i class="fas fa-times-circle"></i>
@@ -78,7 +149,49 @@
 
 $.validator.setDefaults( {
     submitHandler: function () {
-        alert( "submitted!" );
+        $.ajax({
+            method: "POST",
+            url: "{{ route('escuelas.store') }}",
+            data: $("#form_create").serialize()
+        })
+            .done(function(data, textStatus, jqXHR){
+                Swal.fire({
+                    type: 'success',
+                    title: 'Todo correcto',
+                    text: 'Los datos se han guardado correctamente.',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Corregir',
+                    confirmButtonText: 'Continuar'
+                });
+            })
+            .fail(function( jqXHR, textStatus, errorThrown){
+                console.log(jqXHR);
+                console.log('textStatus: '+textStatus);
+                console.log('errorThrown: '+errorThrown);
+                var errors = Object.keys(jqXHR.responseJSON.errors).length
+                var message = errors === 1
+                    ? 'Verifica el campo marcado en rojo'
+                    : 'Verifica los ' + errors + ' campos marcados en rojo';
+
+                $.each(jqXHR.responseJSON.errors, function(key,value){
+                    $( "#"+key ).addClass( "is-invalid" ).removeClass( "is-valid" );
+                    $('<div id="'+key+'-error" class="error invalid-feedback">'+value+'</div>').insertAfter( $( "#"+key ) );
+                });
+
+                Swal.fire({
+                    type: 'error',
+                    title: 'Formulario incorrecto',
+                    text: message,
+                    allowOutsideClick: false,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Corregir'
+                });
+            });
     }
 } );
 
@@ -86,24 +199,33 @@ $(document).ready(function() {
     //https://laravel.com/api/5.8/Illuminate/Http/Request.html#method_root
     var urlRoot = "{{Request::root()}}";
 
+    $.getJSON("{{ route('tiposEscuela') }}", null, function (values) {
+        $('#tipo_id').populateSelect(values);
+    });
+
     $("#form_create").validate({
-        debug: true,
-        errorClass: "is-invalid",
-        validClass: "is-valid",
-        errorElement: "em",
+        debug: false,
+        errorElement: "div",
         rules: {
-            cct:     "required",
+            //cct: { required: true, minlength:10, maxlength:10 },
+            cct: "required",
             nombre:  "required",
             tipo_id: "required",
             nivel_id: "required",
-            servicio_id: "required"
+            servicio_id: "required",
+            turno: 'required',
+            sostenimiento: 'required'
         },
         messages: {
+            //cct: { required: "Falta la clave", minlength:"Min. 10 caracteres", maxlength:"Max. 10 caracteres" },
             cct: "Falta la clave",
             nombre: "Falta el nombre",
-            tipo_id: "Falta el tipo",
-            nivel_id: "Falta el nivel",
-            servicio_id: "Falta el tipo de servicio"
+            tipo_id: "Elija el tipo",
+            nivel_id: "Elija el nivel",
+            servicio_id: "Elija el tipo de servicio",
+            turno: 'Elija el turno',
+            sostenimiento: 'Elija público o privado'
+
         },
         invalidHandler: function(event, validator) {
             // 'this' refers to the form
@@ -123,10 +245,11 @@ $(document).ready(function() {
                     cancelButtonText: 'Corregir'
                 });
             } else {
-                // el fomulario se ha validado correctamente, informar que se procedera a guardaer el formulario
+                // el fomulario se ha validado correctamente, informar que se procedera a guardar el formulario
             }
         },
         errorPlacement: function ( error, element ) {
+            //Add: <div id="element-error" class="error invalid-feedback">message</div>
             error.addClass( "invalid-feedback" );
             if ( element.prop( "type" ) === "checkbox" ) {
                 error.insertAfter( element.parent( "label" ) );
@@ -134,21 +257,41 @@ $(document).ready(function() {
                 error.insertAfter( element );
             }
         },
+        success: function(element){
+            //Remove: <div id="element-error" class="error invalid-feedback">message</div>
+            $( element ).remove();
+        },
         highlight: function ( element, errorClass, validClass ) {
-            $( element ).addClass( errorClass ).removeClass( validClass );
+            $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
         },
         unhighlight: function (element, errorClass, validClass) {
-            $( element ).addClass( validClass ).removeClass( errorClass );
+            $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
         }
     });
 
-    $.getJSON("{{ route('tiposDeEscuela') }}", null, function (values) {
-        $.each(values.tipos, function(key, value) {
-            $('#tipo_id').append($('<option>', {
-                value: value.id,
-                text : value.nombre
-            }));
-        });
+    $("#tipo_id").change( function (){
+        if($(this).val()!==''){
+            enableDisable('empty','nivel_id','enabled');
+            enableDisable('empty','servicio_id','');
+            $.getJSON(urlRoot+'/niveltipo/'+$(this).val(), null, function (values) {
+                $('#nivel_id').populateSelect(values);
+            });
+        }else{
+            $(this).removeClass('is_valid');
+            enableDisable('empty','nivel_id','');
+            enableDisable('empty','servicio_id','');
+        }
+    });
+
+    $("#nivel_id").change( function() {
+        if($(this).val()!==''){
+            enableDisable('empty','servicio_id', 'enabled');
+            $.getJSON(urlRoot+'/servnivel/'+$(this).val(), null, function (values) {
+                $('#servicio_id').populateSelect(values);
+            });
+        }else{
+            enableDisable('empty','servicio_id','');
+        }
     });
 
     $.fn.populateSelect = function (values) {
@@ -165,31 +308,9 @@ $(document).ready(function() {
 
         if(action==='enabled'){ $("#"+element).removeAttr('disabled'); }
         else{ $("#"+element).prop('disabled', 'disabled');}
+
+
     }
-
-    $("#tipo_id").change( function (){
-        if($(this).val()!==''){
-            enableDisable('empty','nivel_id','enabled');
-            enableDisable('empty','servicio_id','');
-            $.getJSON(urlRoot+'/niveltipo/'+$(this).val(), null, function (values) {
-                $('#nivel_id').populateSelect(values);
-            });
-        }else{
-            enableDisable('empty','nivel_id','');
-            enableDisable('empty','servicio_id','');
-        }
-    });
-
-    $("#nivel_id").change( function() {
-        if($(this).val()!==''){
-            enableDisable('empty','servicio_id', 'enabled');
-            $.getJSON(urlRoot+'/servnivel/'+$(this).val(), null, function (values) {
-                $('#servicio_id').populateSelect(values);
-            });
-        }else{
-            enableDisable('empty','servicio_id','');
-        }
-    });
 
 });
 </script>

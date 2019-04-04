@@ -22,7 +22,9 @@ class Escuela extends Model
      * @var array
      */
     protected $fillable = [
-        'cct', 'nombre', 'nivel', 'turno', 'sostenimiento', 'status'
+        'cct', 'incorporacion', 'nombre', 'tipo_id', 'nivel_id', 'servicio_id',
+        'turno', 'sostenimiento', 'calle', 'exterior', 'interior', 'entrecalles',
+        'colonia', 'codpost', 'pais', 'entidad', 'municipio', 'localidad', 'status'
     ];
 
     /**
