@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCiclosTable extends Migration
+class CreateConfigUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCiclosTable extends Migration
      */
     public function up()
     {
-        Schema::create('ciclos', function (Blueprint $table) {
+        Schema::create('config_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('inicio');
-            $table->integer('fin');
-            $table->boolean('status')->default(true);
-            $table->softDeletes();
+            $table->integer('user_id');
+            $table->integer('ciclo_id');
+            $table->string('ciclo_periodo',9);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateCiclosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ciclos');
+        Schema::dropIfExists('config_user');
     }
 }

@@ -20,65 +20,24 @@
             <small class="text-danger"> (* campo obligatorio)</small>
         </div>
 
-        @if($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h6 class="alert-heading">Verifique los errores del formulario</h6>
-            </div>
-        @endif
-        @if(session('status'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h6 class="alert-heading">
-                    El ciclo escolar que trata de crear, ya existe. Verifique los años del periodo.
-                </h6>
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('ciclos.store') }}" id="form_create" name="form_create">
+        <form method="POST" action="{{ route('ciclos.store') }}" id="form_ciclo" name="form_ciclo">
             @csrf
-
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="">Periodo del ciclo escolar <span class="text-danger">*</span> </label>
                     <div class="row">
                         <div class="col">
-                            <input type="text" class="form-control{{ $errors->has('inicio')||session('status') ? ' is-invalid' : '' }}" value="{{ old('inicio') }}" placeholder="20XX" id="inicio" name="inicio" required>
-                            @if ($errors->has('inicio'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('inicio') }}
-                                </div>
-                            @endif
+                            <label for="inicio">Per&iacute;odo Inicial <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="20XX" id="inicio" name="inicio" required>
                         </div>
-                        -
                         <div class="col">
-                            <input type="text" class="form-control{{ $errors->has('fin')||session('status') ? ' is-invalid' : '' }}" value="{{ old('fin') }}" placeholder="20XX" id="fin" name="fin" required>
-                            @if ($errors->has('fin'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('fin') }}
-                                </div>
-                            @endif
+                            <label for="inicio">Per&iacute;odo Final <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="20XX" id="fin" name="fin" required>
                         </div>
 
                     </div>
 
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-3" >
-                    <label for="status">Disponible </label>
-                    <select id="status" name="status" class="form-control" required>
-                        <option selected value=""></option>
-                        <option value="1" {{ old('status') == "1" ? "selected" : "" }}>Si</option>
-                        <option value="0" {{ old('status') == "0" ? "selected" : "" }}>No</option>
-                    </select>
-                </div>
-            </div>
-
             <hr>
             <div class="float-left">
                 <a class="btn btn-danger" href="{{ route('ciclos.index') }}" id="btn_cancelar" name="btn_cancelar" role="button">
@@ -96,3 +55,12 @@
     </div>
 </div>
 @endsection()
+@section('module_javascript')
+<!-- Archivo(s) javascript del modulo -->
+<script src="{{ asset('js/jquery.validate.js') }}" ></script>
+<script src="{{ asset('js/modules/ciclo.js') }}"></script>
+<script>
+//Variables globales
+var urlRoot = "{{Request::root()}}";
+</script>
+@endsection

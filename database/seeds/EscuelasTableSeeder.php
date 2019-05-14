@@ -13,36 +13,45 @@ class EscuelasTableSeeder extends Seeder
     public function run()
     {
         Escuela::create([
+            'tipo_id' => 4,
+            'nivel_id' => 8,
+            'servicio_id' => 20,
+            'nombre' => 'academia de inglés: irlanda',
             'cct' => '23PBT0035N',
-            'nombre' => 'academia de ingles irlanda',
-            'nivel' => 'Formación para el trabajo',
-            'turno' => 'Nocturno',
-            'sostenimiento' => 'Privado',
-            'status' => true
+            'turno' => 'Vespertino',
+            'sostenimiento' => 'Privado'
         ]);
+
         Escuela::create([
+            'tipo_id' => 1,
+            'nivel_id' => 2,
+            'servicio_id' => 5,
+            'nombre' => 'crescencio carrillo y ancona',
             'cct' => '31PPR0379E',
-            'nombre' => 'crescencio carrillo y ancona',
-            'nivel' => 'Primaria',
             'turno' => 'Matutino',
-            'sostenimiento' => 'Privado',
-            'status' => true
+            'sostenimiento' => 'Privado'
         ]);
+
         Escuela::create([
+            'tipo_id' => 1,
+            'nivel_id' => 3,
+            'servicio_id' => 8,
+            'nombre' => 'crescencio carrillo y ancona',
             'cct' => '31PES0080Q',
-            'nombre' => 'crescencio carrillo y ancona',
-            'nivel' => 'Secundaria',
             'turno' => 'Matutino',
-            'sostenimiento' => 'Privado',
-            'status' => true
+            'sostenimiento' => 'Privado'
         ]);
+
         Escuela::create([
+            'tipo_id' => 3,
+            'nivel_id' => 6,
+            'servicio_id' => 16,
+            'nombre' => 'crescencio carrillo y ancona',
             'cct' => '31PBH0024V',
-            'nombre' => 'dr. crescencio carrillo y ancona',
-            'nivel' => 'Media Superior',
             'turno' => 'Matutino',
-            'sostenimiento' => 'Privado',
-            'status' => true
+            'sostenimiento' => 'Privado'
         ]);
+
+
     }
 }

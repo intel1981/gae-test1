@@ -15,8 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call(TiposTableSeeder::class);
         $this->call(NivelesTableSeeder::class);
         $this->call(ServiciosTableSeeder::class);
-        //$this->call(EscuelasTableSeeder::class);
+        $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(EscuelasTableSeeder::class);
+        $this->call(CiclosTableSeeder::class);
         //$this->call(GradosTableSeeder::class);
-        //$this->call(CiclosTableSeeder::class);
+
     }
 }

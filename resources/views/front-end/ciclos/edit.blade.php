@@ -19,57 +19,25 @@
             </span>
                 <small class="text-danger"> (* campo obligatorio)</small>
             </div>
-
-            @if($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h6 class="alert-heading">Verifique los errores del formulario</h6>
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('ciclos.update', $ciclo->id) }}" id="form_edit" name="form_edit">
+            <form method="POST" action="{{ route('ciclos.update', $ciclo->id) }}" id="form_ciclo" name="form_ciclo">
                 @method('PATCH')
                 @csrf
-
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="">Periodo del ciclo escolar <span class="text-danger">*</span> </label>
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control{{ $errors->has('inicio') ? ' is-invalid' : '' }}" value="{{ old('inicio', $ciclo->inicio) }}" placeholder="20XX" id="inicio" name="inicio" required>
-                                @if ($errors->has('inicio'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('inicio') }}
-                                    </div>
-                                @endif
+                                <label for="inicio">Per&iacute;odo Inicial <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="{{ $ciclo->inicio }}" placeholder="20XX" id="inicio" name="inicio" required>
                             </div>
-                            -
                             <div class="col">
-                                <input type="text" class="form-control{{ $errors->has('fin') ? ' is-invalid' : '' }}" value="{{ old('fin', $ciclo->fin) }}" placeholder="20XX" id="fin" name="fin" required>
-                                @if ($errors->has('fin'))
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('fin') }}
-                                    </div>
-                                @endif
+                                <label for="inicio">Per&iacute;odo Final <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="{{ $ciclo->fin }}" placeholder="20XX" id="fin" name="fin" required>
                             </div>
 
                         </div>
 
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-3" >
-                        <label for="status">Disponible </label>
-                        <select id="status" name="status" class="form-control" required>
-                            <option selected value=""></option>
-                            <option value="1" {{ $ciclo->status == true ? "selected" : "" }}>Si</option>
-                            <option value="0" {{ $ciclo->status == false ? "selected" : ""}}>No</option>
-                        </select>
-                    </div>
-                </div>
-
                 <hr>
                 <div class="float-left">
                     <a class="btn btn-danger" href="{{ route('ciclos.index') }}" id="btn_cancelar" name="btn_cancelar" role="button">
@@ -87,3 +55,12 @@
         </div>
     </div>
 @endsection()
+@section('module_javascript')
+<!-- Archivo(s) javascript del modulo -->
+<script src="{{ asset('js/jquery.validate.js') }}" ></script>
+<script src="{{ asset('js/modules/ciclo.js') }}"></script>
+<script>
+//Variables globales
+var urlRoot = "{{Request::root()}}";
+</script>
+@endsection

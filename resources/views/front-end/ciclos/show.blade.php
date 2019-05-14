@@ -13,17 +13,6 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8 my-3 p-3 rounded bg-white shadow-sm border">
-            @if(session('status'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h6 class="alert-heading">
-                        <i class="fas fa-check"></i></i>
-                        {{ session('status') }}
-                    </h6>
-                </div>
-            @endif
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="">Periodo del ciclo escolar</label>
@@ -38,18 +27,14 @@
                     </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="status">Ciclo escolar disponible </label>
-                    <input type="text" class="form-control" value="{{ $ciclo->status ? 'Si' : 'No'  }}" disabled>
-                </div>
-            </div>
+            @can('ciclos.edit')
             <div class="float-right">
                 <a class="btn text-white" style="background-color: #0D47A1" href="{{ route('ciclos.edit', ['id' => $ciclo->id]) }}" id="btn_edit" name="btn_edit" role="button">
                     <i class="fas fa-pencil-alt"></i>
                     Editar
                 </a>
             </div>
+            @endcan
         </div>
     </div>
 @endsection()

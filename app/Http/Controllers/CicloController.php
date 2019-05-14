@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\CicloRequest;
 use App\Models\Ciclo;
@@ -8,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CicloController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +21,13 @@ class CicloController extends Controller
      */
     public function index()
     {
-        $ciclos = Ciclo::all();
-        return view('front-end.ciclos.index', compact('ciclos'));
+        if(Auth::user()->hasPermissionTo('ciclos.index')) {
+            $ciclos = Ciclo::all();
+            return view('front-end.ciclos.index', compact('ciclos'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -26,7 +37,12 @@ class CicloController extends Controller
      */
     public function create()
     {
-        return view('front-end.ciclos.create');
+        if(Auth::user()->hasPermissionTo('ciclos.create')) {
+            return view('front-end.ciclos.create');
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -39,9 +55,11 @@ class CicloController extends Controller
     public function store(CicloRequest $request)
     {
         $ciclo = tap(new Ciclo($request->all()))->save();
-        return redirect()
-            ->route('ciclos.show', ['id' => $ciclo->id])
-            ->with('status','El periodo del ciclo escolar se ha creado correctamente');
+        return response()
+            ->json([
+                'message'  => 'Los datos se han guardado correctamente',
+                'location' => route('ciclos.show', ['id' => $ciclo->id])
+            ]);
     }
 
     /**
@@ -52,7 +70,12 @@ class CicloController extends Controller
      */
     public function show(Ciclo $ciclo)
     {
-        return view('front-end.ciclos.show', compact('ciclo'));
+        if(Auth::user()->hasPermissionTo('ciclos.show')) {
+            return view('front-end.ciclos.show', compact('ciclo'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -63,7 +86,12 @@ class CicloController extends Controller
      */
     public function edit(Ciclo $ciclo)
     {
-        return view('front-end.ciclos.edit', compact('ciclo'));
+        if(Auth::user()->hasPermissionTo('ciclos.edit')) {
+            return view('front-end.ciclos.edit', compact('ciclo'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -77,9 +105,11 @@ class CicloController extends Controller
     public function update(CicloRequest $request, Ciclo $ciclo)
     {
         $ciclo->update($request->all());
-        return redirect()
-            ->route('ciclos.show', ['id' => $ciclo->id])
-            ->with('status', 'El periodo del ciclo escolar se ha actualizado correctamente');
+        return response()
+            ->json([
+                'message'  => 'Los datos se han actualizado correctamente',
+                'location' => route('ciclos.show', ['id' => $ciclo->id])
+            ]);
     }
 
     /**

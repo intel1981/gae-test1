@@ -5,6 +5,11 @@ use App\Models\Admin\Tipo;
 
 class NivelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Filtrar los niveles de acuerdo al tipo de servicio elegido.
      * Relacion TIPOS-NIVELES

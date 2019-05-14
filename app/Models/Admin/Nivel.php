@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Escuela;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,5 +31,14 @@ class Nivel extends Model
      */
     public function servicios(){
         return $this->hasMany(Servicio::class);
+    }
+
+    /*
+     * Relacion NIVELES:ESCUELAS (1:M)
+     * Lado 1
+     * Obtener todas las escuelas que pertenecen a este nivel
+     */
+    public function escuelas(){
+        return $this->hasMany(Escuela::class);
     }
 }

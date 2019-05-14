@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ServicioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Filtrar los servicios de acuerdo al nivel elegido.
      * Relacion NIVELES:SERVICIOS

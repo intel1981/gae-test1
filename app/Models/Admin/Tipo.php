@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Escuela;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,5 +31,14 @@ class Tipo extends Model
      */
     public function servicios(){
         return $this->hasMany(Servicio::class);
+    }
+
+    /*
+     * Relacion: TIPOS:ESCUELAS (1:M)
+     * Lado 1
+     * Obtener todas las escuelas que pertenecen a este tipo
+     */
+    public function escuelas(){
+        return $this->hasMany(Escuela::class);
     }
 }

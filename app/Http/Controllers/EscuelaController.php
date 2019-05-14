@@ -1,13 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\EscuelaRequest;
+use App\Models\Admin\Nivel;
+use App\Models\Admin\Tipo;
 use App\Models\Escuela;
 use Illuminate\Http\Request;
 
 class EscuelaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +23,13 @@ class EscuelaController extends Controller
      */
     public function index()
     {
-        $escuelas = Escuela::orderBy('created_at', 'desc')->get();
-        return view('front-end.escuelas.index', compact('escuelas'));
+        if(Auth::user()->hasPermissionTo('escuelas.index')) {
+            $escuelas = Escuela::orderBy('created_at', 'desc')->with('nivel')->get();
+            return view('front-end.escuelas.index', compact('escuelas'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -26,7 +39,15 @@ class EscuelaController extends Controller
      */
     public function create()
     {
-        return view('front-end.escuelas.create2');
+        if(Auth::user()->hasPermissionTo('escuelas.create')){
+            return view('front-end.escuelas.create2',[
+                'tipos' => Tipo::orderBy('id','asc')->get()
+            ]);
+        }
+        else{
+            abort(403);
+        }
+
     }
 
     /**
@@ -38,9 +59,11 @@ class EscuelaController extends Controller
     public function store(EscuelaRequest $request)
     {
         $escuela = tap(new Escuela($request->all()))->save();
-        return redirect()
-            ->route('escuelas.show', ['id' => $escuela->id])
-            ->with('status','La escuela se ha creado correctamente');
+        return response()
+            ->json([
+                'message'  => 'Los datos se han guardado correctamente',
+                'location' => route('escuelas.show', ['id' => $escuela->id])
+            ]);
     }
 
     /**
@@ -51,7 +74,12 @@ class EscuelaController extends Controller
      */
     public function show(Escuela $escuela)
     {
-        return view('front-end.escuelas.show', compact('escuela'));
+        if(Auth::user()->hasPermissionTo('escuelas.show')) {
+            return view('front-end.escuelas.show', compact('escuela'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -62,7 +90,17 @@ class EscuelaController extends Controller
      */
     public function edit(Escuela $escuela)
     {
-        return view('front-end.escuelas.edit', compact('escuela'));
+        if(Auth::user()->hasPermissionTo('escuelas.edit')) {
+            return view('front-end.escuelas.edit2', [
+                'escuela' => $escuela,
+                'tipos' => Tipo::orderBy('id', 'asc')->get(),
+                'niveles' => Tipo::find($escuela->tipo_id)->niveles,   /*TIPOS:NIVELES*/
+                'servicios' => Nivel::find($escuela->nivel_id)->servicios /*NIVELES:SERVICIOS*/
+            ]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -75,9 +113,11 @@ class EscuelaController extends Controller
     public function update(EscuelaRequest $request, Escuela $escuela)
     {
         $escuela->update($request->all());
-        return redirect()
-            ->route('escuelas.show', ['id' => $escuela->id])
-            ->with('status','La escuela se ha actualizado correctamente');
+        return response()
+            ->json([
+                'message'  => 'Los datos se han actualizado correctamente',
+                'location' => route('escuelas.show', ['id' => $escuela->id])
+            ]);
     }
 
     /**

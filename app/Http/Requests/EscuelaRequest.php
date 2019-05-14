@@ -33,11 +33,11 @@ class EscuelaRequest extends FormRequest
             case 'POST':
                 {
                     return [
+                        'cct'           => 'required|unique:escuelas|min:10|max:10',
+                        'nombre'        => 'required|max:120',
                         'tipo_id'       => 'required',
                         'nivel_id'      => 'required',
                         'servicio_id'   => 'required',
-                        'nombre'        => 'required|max:120',
-                        'cct'           => 'required|unique:escuelas|min:10|max:10',
                         'turno'         => 'required',
                         'sostenimiento' => 'required'
                     ];
@@ -52,8 +52,10 @@ class EscuelaRequest extends FormRequest
                             'min:10',
                             'max:10'
                         ],
-                        'nombre'        => 'required|max:60',
-                        'nivel'         => 'required',
+                        'nombre'        => 'required|max:120',
+                        'tipo_id'       => 'required',
+                        'nivel_id'      => 'required',
+                        'servicio_id'   => 'required',
                         'turno'         => 'required',
                         'sostenimiento' => 'required'
                     ];

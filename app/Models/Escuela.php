@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Nivel;
+use App\Models\Admin\Servicio;
+use App\Models\Admin\Tipo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -59,16 +62,6 @@ class Escuela extends Model
     }
 
     /**
-     * Pone en mayusculas el nombre de la escuela.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setNombreAttribute($value)
-    {
-        $this->attributes['nombre'] = mb_strtoupper($value);
-    }
-    /**
      * Mutator
      * Establece el status de la escuela. 1=true, 0= false
      * Sucede cuando el valor no existe o no se envia por el Request
@@ -84,6 +77,32 @@ class Escuela extends Model
         else{
             $this->attributes['status'] = false;
         }
+    }
 
+    /*
+     * Relacion: TIPOS:ESCUELAS (1:M)
+     * Lado M
+     * Obtener el tipo al que pertenece esta escuela
+     */
+    public function tipo(){
+        return $this->belongsTo(Tipo::class,'tipo_id','id');
+    }
+
+    /*
+     * Relacion: NIVELES:ESCUELAS (1:M)
+     * Lado M
+     * Obtener el nivel al que pertenece esta escuela
+     */
+    public function nivel(){
+        return $this->belongsTo(Nivel::class,'nivel_id','id');
+    }
+
+    /*
+     * Relacion: SERVICIOS:ESCUELAS (1:M)
+     * Lado M
+     * Obtener el servicio al que pertenece esta escuela
+     */
+    public function servicio(){
+        return $this->belongsTo(Servicio::class,'servicio_id','id');
     }
 }
